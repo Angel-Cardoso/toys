@@ -1,0 +1,28 @@
+Puntos importantes
+
+27/08 
+creacion de modelos 17:22
+registro en admin.py 17:47
+migraciones y migrate 19:20
+metodo __str 24:20
+
+28/08
+adición del campo user al modelo tweet 16:16
+
+29/08
+todo lo de los querysets 19:00
+deplegar cosas en una tabla bonita 33:00
+
+30/08 
+iniciamos con los detalles 4:15
+urls dinamicas 12:22
+
+11/09/18
+busquedas con q, todo el video
+
+31/08/18 vistas basadas en clases
+
+10/09/18 actualizacion de registros alv
+
+17/10/18 Cuents de usuarios
+urls con nombres en una vista basada en clase 18:52 
