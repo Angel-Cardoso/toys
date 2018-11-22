@@ -1,0 +1,93 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS and JS -->
+    
+    <link rel="stylesheet" href="{% static 'bootstrap4/css/bootstrap.min.css' %}">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}"></script>
+
+    <title>{% block title %}{% endblock %} </title>
+  </head>
+  
+  
+  <!-- posible imagen de fondo -->
+
+      <img class="img-fluid" src='/static/Images/Fondo_Principal.jpg'>
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand" href="{% url 'index_view'%}">Toys</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Principal<span class="sr-only">(current)</span></a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Calendario</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Extra</a>
+       </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Extra</a>
+        </li>       
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Avances</a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Extra</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Extra</a>
+        </li> -->
+        <!-- Dropdown del calendario -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Extras</a>
+          <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink3">
+            <a class="dropdown-item" href="#">Extra</a>
+            <a class="dropdown-item" href="#">Extra</a>
+          </div>
+        </li>
+        <!-- Dropdown de reportes o algo asi... meh -->
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
+          <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink2">
+            <a class="dropdown-item" href="#">Lista de Reportes</a>
+            <a class="dropdown-item" href="#">Crear Reporte</a>
+          </div>
+        </li> -->
+        
+        <!-- trash -->
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar</a>
+          <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink">
+            <a class="dropdown-item" href="#">Registrar Jugador</a>
+            <a class="dropdown-item" href="#">Registrar Equipo</a>
+            <a class="dropdown-item" href="#">Registrar Estadio</a>
+            <a class="dropdown-item" href="#">Registrar Asiento</a>
+            <a class="dropdown-item" href="#">Registrar Fanatico</a>
+             <a class="dropdown-item" href="#">Rentar Palco</a>
+          </div>
+        </li> -->
+      </ul>
+   </div>
+  </nav>
+    {% block content %}
+
+    {% endblock %}
+    
+  </body>
+</html>
