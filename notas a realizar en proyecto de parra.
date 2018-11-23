@@ -1,0 +1,27 @@
+notas a realizar en proyecto de parra.
+
+* - Debemos crear un login. La opcion de login estara disponible en la nav-bar, nos permitirá logearnos y así tener acceso a diferentes opciones detro de la página.
+
+* - Añadir al modelo de producto_inv más campos que nos ayuden en su evaluación, serán campos como: dureza, elasticidad, presentación, tamaño, colores, jugabilidad, entre otros.
+
+* - campo de etiqueta en los productos. Se debe crear una función que genere una etiqueta basada en otros campos propios del producto, cada etiqueta debe ser diferente.
+
+* - Buscador de etiquetas, necesitamos crear una plantilla donde nos solicite ingresar el código de etiqueta que queramos y así nos despliegue información específica del produto o lote que se este buscando.
+
+* - Crear formularios para casi todos los modelos, esto incluye sus plantillas por formulario.
+
+
+* - Vistas a crear o modificar: 
+
+	* El base.html y el index.html deberá ser modificado con imagenes acordes a la empresa. 
+
+	* Deberán conseguirse imagenes propiadas para las diferentes plantillas
+
+	* perfil de usuario, donde nos deplegará sus datos y cargo, además contendrá una foto del individuo, así como la línea o área de la que está acargo o en qué línea trabaja en caso de ser un obrero.
+
+ 	* lista de productos aprobados y no aprobados (con su respectiva opción de "detalle"). En el detalle será posible ver la etiqueta del producto, sus datos, foto del producto en general, y una lista de las piezas que lo conforman.
+
+ 	* Lista de lotes, deberá tener la opción de detalle. En detalle se nos mostrarán datos específicos del lote, como su etiqueta, así como los productos que lo conforman, además de decir hacía donde va y su estado por si ya ha sido entregado o está en camino.
+
+ 	* Lista de ordenes de compra. En su detalle veremos sus datos, y los lotes que llevan, así como el estado de la compra, por si ya ha llegado o está en camino.
+
