@@ -6,13 +6,15 @@ notas a realizar en proyecto de parra.
 
 * - campo de etiqueta en los productos. Se debe crear una función que genere una etiqueta basada en otros campos propios del producto, cada etiqueta debe ser diferente. ESTADO: EN PROCESO
 
-* - Buscador de etiquetas, necesitamos crear una plantilla donde nos solicite ingresar el código de etiqueta que queramos y así nos despliegue información específica del produto o lote que se este buscando.
+
 
 * - Crear formularios para casi todos los modelos, esto incluye sus plantillas por formulario.
 
 
 * - Vistas a crear o modificar: 
-
+	
+	* - Buscador de etiquetas, necesitamos crear una plantilla donde nos solicite ingresar el código de etiqueta que queramos y así nos despliegue información específica del produto o lote que se este buscando.
+	
 	* El base.html y el index.html deberá ser modificado con imagenes acordes a la empresa. 
 
 	* Deberán conseguirse imagenes propiadas para las diferentes plantillas

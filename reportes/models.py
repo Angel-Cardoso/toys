@@ -38,7 +38,7 @@ class Productos_gral(models.Model):
 class Productos_indiv(models.Model):
 
 	# Este valor nos permite hacer una seleccion entre una serie
-	# de valores
+	# de opciones
 	RADIO_CHOICES = (
 		(1,1),
 		(2,2),
@@ -51,6 +51,8 @@ class Productos_indiv(models.Model):
 		('ROS', 'Rosarito'),
 		('TEC', 'Tecate'),
 		)
+
+	# Campos chidos
 	nombre_producto = models.ForeignKey(Productos_gral, on_delete=models.CASCADE)
 	linea = models.ForeignKey(Lineas, on_delete=models.CASCADE, default = 1)
 	
