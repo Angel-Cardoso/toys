@@ -46,6 +46,11 @@ class Productos_indiv(models.Model):
 		(4,4),
 		(5,5),
 		)
+	FABRICA_CHOICES = (
+		('TIJ', 'Tijuana'),
+		('ROS', 'Rosarito'),
+		('TEC', 'Tecate'),
+		)
 	nombre_producto = models.ForeignKey(Productos_gral, on_delete=models.CASCADE)
 	linea = models.ForeignKey(Lineas, on_delete=models.CASCADE, default = 1)
 	
@@ -55,12 +60,22 @@ class Productos_indiv(models.Model):
 	tamaño = models.IntegerField(choices = RADIO_CHOICES, default = 1)
 	movilidad = models.IntegerField(choices = RADIO_CHOICES, default = 1)
 	empaque = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	fabrica = models.CharField(max_length = 40, choices = FABRICA_CHOICES, default = 'TIJ')
 	# Función que calcula su calidad
 	def _get_calificacion(self):
 		return self.resistencia+self.presentacion+self.tamaño+self.movilidad+self.empaque
 	# calificacion de calidad segun sus resultados
 	calificacion = property(_get_calificacion)
-	# etiqueta = calificacion
+
+	# Función que genera la etiqueta
+	def _get_etiqueta(self):
+		if self.calificacion <= 20:
+			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "NOPE"
+		else:
+			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "YEP"
+		return etiqueta
+	# YEP para productos aprobados, NOPE para no aprobados
+	etiqueta = property(_get_etiqueta)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.nombre_producto)
