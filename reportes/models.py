@@ -2,6 +2,18 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
+class Areas(models.Model):
+	nombre_area = models.CharField(max_length = 40)
+	fecha_registro = models.DateTimeField(auto_now_add = True)
+	def __str__(self):
+		return str(self.nombre_area)
+
+class Lineas(models.Model):
+	area = models.ForeignKey(Areas, on_delete=models.CASCADE)
+	fecha_registro = models.DateTimeField(auto_now_add = True)
+	def __str__(self):
+		return str(self.id)
+
 class Piezas_gral(models.Model):
 	nombre_pieza = models.CharField(max_length = 40)
 	proveedor = models.CharField(max_length = 40)
@@ -12,25 +24,46 @@ class Piezas_gral(models.Model):
 
 class Piezas_indiv(models.Model):
 	nombre_pieza = models.ForeignKey(Piezas_gral, on_delete=models.CASCADE)
-	proveedor = models.CharField(max_length = 40)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.nombre_pieza)
 
 class Productos_gral(models.Model):
 	nombre_producto = models.CharField(max_length = 40)
-	proveedor = models.CharField(max_length = 40)
 	precio = models.FloatField()
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.nombre_producto)
 
 class Productos_indiv(models.Model):
+
+	# Este valor nos permite hacer una seleccion entre una serie
+	# de valores
+	RADIO_CHOICES = (
+		(1,1),
+		(2,2),
+		(3,3),
+		(4,4),
+		(5,5),
+		)
 	nombre_producto = models.ForeignKey(Productos_gral, on_delete=models.CASCADE)
-	proveedor = models.CharField(max_length = 40)
+	linea = models.ForeignKey(Lineas, on_delete=models.CASCADE, default = 1)
+	
+	# Campos de evaluación
+	resistencia = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	presentacion = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	tamaño = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	movilidad = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	empaque = models.IntegerField(choices = RADIO_CHOICES, default = 1)
+	# Función que calcula su calidad
+	def _get_calificacion(self):
+		return self.resistencia+self.presentacion+self.tamaño+self.movilidad+self.empaque
+	# calificacion de calidad segun sus resultados
+	calificacion = property(_get_calificacion)
+	# etiqueta = calificacion
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
-		return str(self.nombre_pieza)
+		return str(self.nombre_producto)
 
 class Sexos(models.Model):
 	sexo = models.CharField(max_length = 20)
@@ -68,18 +101,6 @@ class Cargos(models.Model):
 class Producto_pieza(models.Model):
 	pieza = models.ForeignKey(Piezas_indiv, on_delete=models.CASCADE)
 	producto = models.ForeignKey(Productos_indiv, on_delete=models.CASCADE)
-	fecha_registro = models.DateTimeField(auto_now_add = True)
-	def __str__(self):
-		return str(self.id)
-
-class Areas(models.Model):
-	nombre_area = models.CharField(max_length = 40)
-	fecha_registro = models.DateTimeField(auto_now_add = True)
-	def __str__(self):
-		return str(self.nombre_area)
-
-class Lineas(models.Model):
-	area = models.ForeignKey(Areas, on_delete=models.CASCADE)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.id)

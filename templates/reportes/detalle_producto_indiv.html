@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} producto individual {% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div>
+		<h1 class="text-center">{{object.nombre_producto}}</h1>
+		<p class="text-justify">Linea de ensamblado: {{object.linea}}</p>
+		<p class="text-justify">Calificación de calidad: {{object.calificacion}}</p>
+		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
+</section>
+{% endblock %}
