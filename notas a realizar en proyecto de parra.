@@ -2,9 +2,9 @@ notas a realizar en proyecto de parra.
 
 * - Debemos crear un login. La opcion de login estara disponible en la nav-bar, nos permitirá logearnos y así tener acceso a diferentes opciones detro de la página.
 
-* - Añadir al modelo de producto_inv más campos que nos ayuden en su evaluación, serán campos como: dureza, elasticidad, presentación, tamaño, colores, jugabilidad, entre otros. STADO: EN PROCESO
+* - Añadir al modelo de producto_inv más campos que nos ayuden en su evaluación, serán campos como: dureza, elasticidad, presentación, tamaño, colores, jugabilidad, entre otros. ESTADO: TERMINADO
 
-* - campo de etiqueta en los productos. Se debe crear una función que genere una etiqueta basada en otros campos propios del producto, cada etiqueta debe ser diferente.
+* - campo de etiqueta en los productos. Se debe crear una función que genere una etiqueta basada en otros campos propios del producto, cada etiqueta debe ser diferente. ESTADO: EN PROCESO
 
 * - Buscador de etiquetas, necesitamos crear una plantilla donde nos solicite ingresar el código de etiqueta que queramos y así nos despliegue información específica del produto o lote que se este buscando.
 
