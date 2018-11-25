@@ -72,9 +72,15 @@ class Productos_indiv(models.Model):
 	# Función que genera la etiqueta
 	def _get_etiqueta(self):
 		if self.calificacion <= 20:
-			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "NOPE"
+			if self.id < 10:
+				etiqueta = "TOYS" + "0" + str(self.id) + str(self.linea) + self.fabrica + "NOPE"
+			else:
+				etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "NOPE"
 		else:
-			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "YEP"
+			if self.id < 10:
+				etiqueta = "TOYS" + "0" + str(self.id) + str(self.linea) + self.fabrica + "YEPA"
+			else: 
+				etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "YEPA"
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
@@ -166,10 +172,16 @@ class Lotes(models.Model):
 	# Funcion que genera las etiquetas del lote
 	def _get_etiqueta(self):
 		if self.destino == "sin destino":
-			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" +"NOPE"
+			if self.id < 10:
+				etiqueta = "TOYS" + "0" + str(self.id) + str(self.linea) + self.fabrica + "-" +"NOP"
+			else: 
+				etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" +"NOP"
 		else:
-			letras = self.destino[0:4]
-			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" + letras.upper()
+			letras = self.destino[0:3]
+			if self.id < 10:
+				etiqueta = "TOYS" + "0" + str(self.id) + str(self.linea) + self.fabrica + "-" + letras.upper()			
+			else:
+				etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" + letras.upper()
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
