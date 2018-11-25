@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Registro de Producto {% endblock %}
+
+{% block content %}   
+	<form method="post">
+		<section class="container mt-3">
+			{% csrf_token %}
+			<h1>Registro de producto</h1>
+			<p>Nombre del producto: {{form.nombre_producto}}</p>
+			<p>Linea de ensamble: {{form.linea}}</p>
+			<p>Calificación de resistencia: {{form.resistencia}}</p>
+			<p>Calificación de tamaño: {{form.presentacion}}</p>
+			<p>Calificación de tamaño: {{form.tamaño}}</p>
+			<p>Calificación de movilidad: {{form.movilidad}}</p>
+			<p>Calificación de empaque: {{form.empaque}}</p>
+			<p>Fabrica de producción: {{form.fabrica}}</p>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+		</section>	
+	</form>
+	{{message}}  
+{% endblock %}

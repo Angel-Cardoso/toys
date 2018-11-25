@@ -6,7 +6,7 @@ notas a realizar en proyecto de parra.
 
 * - campo de etiqueta en los productos. Se debe crear una función que genere una etiqueta basada en otros campos propios del producto, cada etiqueta debe ser diferente. ESTADO: TERMINADO
 
-* - Crear formularios para casi todos los modelos, esto incluye sus plantillas por formulario.
+* - Crear formularios para casi todos los modelos, esto incluye sus plantillas por formulario. ESTADO: EN PROCESO
 
 
 * - Vistas a crear o modificar: 

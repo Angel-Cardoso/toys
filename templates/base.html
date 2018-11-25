@@ -32,7 +32,7 @@
   </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="#">Principal<span class="sr-only">(current)</span></a>
         </li>
         <!-- <li class="nav-item">
@@ -55,9 +55,9 @@
         </li> -->
         <!-- Dropdown del calendario -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Extras</a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros</a>
           <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink3">
-            <a class="dropdown-item" href="#">Extra</a>
+            <a class="dropdown-item" href="{% url 'registrar_productos_indiv_views'%}">Registro de producto</a>
             <a class="dropdown-item" href="#">Extra</a>
           </div>
         </li>
