@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} lote {% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div>
+		<h1 class="text-center">Lote: {{object.id}}</h1>
+		<p class="text-justify">Linea de ensamblado: {{object.linea}}</p>
+		<p class="text-justify">Fábrica de ensamblado: {{object.fabrica}}</p>
+		<p class="text-justify">Destino: {{object.destino}}</p>
+		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
+		<p class="text-justify">Etiqueta: {{object.etiqueta}}</p>
+</section>
+{% endblock %}

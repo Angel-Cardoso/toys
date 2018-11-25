@@ -14,7 +14,7 @@ from .models import Jefe_linea
 from .models import Jefe_area
 from .models import Orden_almacen
 from .models import Pieza_orden
-
+from .models import Lotes
 # Register your models here.
 admin.site.register(Piezas_gral)
 admin.site.register(Piezas_indiv)
@@ -31,7 +31,7 @@ admin.site.register(Jefe_linea)
 admin.site.register(Jefe_area)
 admin.site.register(Orden_almacen)
 admin.site.register(Pieza_orden)
-
+admin.site.register(Lotes)
 # Modelos presentes:
 
 # Piezas_gral
