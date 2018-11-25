@@ -168,7 +168,7 @@ class Lotes(models.Model):
 		if self.destino == "sin destino":
 			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" +"NOPE"
 		else:
-			letras = self.destino[0:3]
+			letras = self.destino[0:4]
 			etiqueta = "TOYS" + str(self.id) + str(self.linea) + self.fabrica + "-" + letras.upper()
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
