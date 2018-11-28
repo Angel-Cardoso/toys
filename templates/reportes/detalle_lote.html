@@ -11,5 +11,24 @@
 		<p class="text-justify">Destino: {{object.destino}}</p>
 		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
 		<p class="text-justify">Etiqueta: {{object.etiqueta}}</p>
+		<table class="table table-strip mt-5">
+			<th>Productos del lote</th>
+			<th>Etiqueta</th>
+			<th>Detalle</th>
+			{%for producto in object.productos.all %}
+				<tr>	
+						<td>{{ producto.id }} </td>
+						<td>{{producto.etiqueta}}</td>
+						<td><a href="#" class="btn btn-dark">Detalle</a></td>
+				</tr>
+
+					{% empty %}
+					{% if request.GET.q %}
+						No se entontro clientes
+					{% else %}
+						No hay datos
+					{% endif %}
+			{% endfor %}
+		</table>
 </section>
 {% endblock %}

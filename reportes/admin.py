@@ -7,7 +7,7 @@ from .models import Sexos
 from .models import Estados
 from .models import Cargos
 # from .models import Personal # Este modelo está inutilizado de momento
-from .models import Producto_pieza
+# from .models import Producto_pieza
 from .models import Areas
 from .models import Lineas
 from .models import Jefe_linea
@@ -27,7 +27,7 @@ admin.site.register(Sexos)
 admin.site.register(Estados)
 admin.site.register(Cargos)
 # admin.site.register(Personal) # Este modelo esta inutilizado de momento
-admin.site.register(Producto_pieza)
+# admin.site.register(Producto_pieza) # Este model ha sido reemplazado por un ManyToManyField
 admin.site.register(Areas)
 admin.site.register(Lineas)
 admin.site.register(Jefe_linea)
