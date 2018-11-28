@@ -1,6 +1,6 @@
 notas a realizar en proyecto de parra.
 
-* - Debemos crear un login. La opcion de login estara disponible en la nav-bar, nos permitirá logearnos y así tener acceso a diferentes opciones detro de la página.
+* - Debemos crear un login. La opcion de login estara disponible en la nav-bar, nos permitirá logearnos y así tener acceso a diferentes opciones detro de la página. ESTADO: EN PROCESO
 
 * - Añadir al modelo de producto_inv más campos que nos ayuden en su evaluación, serán campos como: dureza, elasticidad, presentación, tamaño, colores, jugabilidad, entre otros. ESTADO: TERMINADO
 
