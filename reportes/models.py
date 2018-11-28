@@ -2,10 +2,12 @@ from django.db import models
 from django.conf import settings
 
 
+# Create your models here.
 class Usuario(models.Model):
 	usuario = models.CharField(max_length=15)
 	contrasena = models.CharField(max_length=15)
-# Create your models here.
+
+
 class Areas(models.Model):
 	nombre_area = models.CharField(max_length = 40)
 	fecha_registro = models.DateTimeField(auto_now_add = True)

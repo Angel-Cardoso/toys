@@ -10,20 +10,23 @@
 		<p class="text-justify">Calificación de calidad total: {{object.calificacion}}</p>
 		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
 		<p class="text-justify">Etiqueta: {{object.etiqueta}}</p>
-		{%for pieza in object.productos_indiv_piezas_indiv_set.all %}
+		<table class="table table-strip mt-5">
+			<th>Piezas del producto</th>
+			<th>Detalle</th>
+			{%for pieza in object.piezas.all %}
 				<tr>	
-						<td>{{ pieza.id }} </td>
-						<td>{{pieza.nombre_pieza}}</td>
+						<td>{{ pieza.nombre_pieza }} </td>
 						<td><a href="#" class="btn btn-dark">Detalle</a></td>
-						<td><a href="#" class="btn btn-dark">Actualizar</a></td>
 				</tr>
 
-				{% empty %}
+					{% empty %}
 					{% if request.GET.q %}
 						No se entontro clientes
 					{% else %}
 						No hay datos
 					{% endif %}
 			{% endfor %}
+		</table>
+		</div>
 </section>
 {% endblock %}
