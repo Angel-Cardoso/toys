@@ -15,7 +15,10 @@ from .models import Jefe_area
 from .models import Orden_almacen
 from .models import Pieza_orden
 from .models import Lotes
+from .models import Usuario
+
 # Register your models here.
+admin.site.register(Usuario)
 admin.site.register(Piezas_gral)
 admin.site.register(Piezas_indiv)
 admin.site.register(Productos_gral)

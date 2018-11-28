@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
 
+
+class Usuario(models.Model):
+	usuario = models.CharField(max_length=15)
+	contrasena = models.CharField(max_length=15)
 # Create your models here.
 class Areas(models.Model):
 	nombre_area = models.CharField(max_length = 40)
@@ -84,6 +88,7 @@ class Productos_indiv(models.Model):
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
+	piezas = models.ManyToManyField(Piezas_indiv, blank = True)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.nombre_producto)
@@ -111,15 +116,15 @@ class Cargos(models.Model):
 # El modelo Personal es remplazado por el modelo users que tiene django
 # Cuando ampliemos el modelo users, probablemente nos sirva
 # así que aquí lo dejo
-# class Personal(models.Model):
-# 	nombre_personal = models.CharField(max_length = 40)
-# 	edad = models.IntegerField()
-# 	sexo = models.ForeignKey(Sexos, on_delete=models.CASCADE)
-# 	telefono = models.IntegerField()
-# 	cargo = models.ForeignKey(Cargos, on_delete=models.CASCADE)
-# 	fecha_registro = models.DateTimeField(auto_now_add = True)
-# 	def __str__(self):
-# 		return str(self.nombre_personal)
+class Personal(models.Model):  
+ 	nombre_personal = models.CharField(max_length = 40)
+ 	edad = models.IntegerField()
+ 	sexo = models.ForeignKey(Sexos, on_delete=models.CASCADE)
+ 	telefono = models.IntegerField()
+ 	cargo = models.ForeignKey(Cargos, on_delete=models.CASCADE)
+ 	fecha_registro = models.DateTimeField(auto_now_add = True)
+ 	def __str__(self):
+ 		return str(self.nombre_personal)
 
 class Producto_pieza(models.Model):
 	pieza = models.ForeignKey(Piezas_indiv, on_delete=models.CASCADE)

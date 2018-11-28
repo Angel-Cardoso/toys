@@ -12,4 +12,5 @@ urlpatterns = [
 
 	# Formularios
 	path('registrar_productos_indiv/', views.registrar_productos_indiv.as_view(), name ='registrar_productos_indiv_views'),
+	path('login/', views.login, name='login_view'),
 ]

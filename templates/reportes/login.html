@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<form action="{% url 'index_view' %}" method="POST">
+		<input type="text" name="usu" placeholder="Usuario">
+		<input type="text" name="con" placeholder="Contraseña">
+		<button type="submit">Entrar</button>
+	</form>
+</body>
+</html>
