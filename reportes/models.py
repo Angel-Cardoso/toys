@@ -98,6 +98,13 @@ class Productos_indiv(models.Model):
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
 	piezas = models.ManyToManyField(Piezas_indiv, blank = True)
+	def _get_estado(self):
+		if self.calificacion <= 20:
+			estado = False
+		else:
+			estado = True
+		return estado
+	estado = property(_get_estado)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.etiqueta)
@@ -199,7 +206,7 @@ class Lotes(models.Model):
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
-	productos = models.ManyToManyField(Productos_indiv, blank=True)
+	productos = models.ManyToManyField(Productos_indiv, blank=True, limit_choices_to={})
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.id)

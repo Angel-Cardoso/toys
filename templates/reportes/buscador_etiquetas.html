@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Buscador de Etiquetas {% endblock %}
+
+{% block content %}
+	<section class="container">
+		<form method="GET" action="{% url 'buscador_etiquetas_view'%}">
+			<input type="text" name="q" placeholder="Buscar...">
+			<button type="submit" class="btn btn-dark">GO!</button>
+		</form>
+
+		<table class="table table-strip">
+		<th>Producto</th>
+		<th>Etiqueta</th>
+		{% for j in object_list %}
+			<tr>
+				<td>{{ j.nombre_producto }} </td>
+				<td>{{ j.etiqueta }}</td>
+				<td><a href="#" class="btn btn-dark">Detalle</a></td>
+			</tr>		
+		{% endfor %}
+	</table>   
+	</section>    
+{% endblock %}

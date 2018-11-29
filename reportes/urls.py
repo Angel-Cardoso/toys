@@ -6,6 +6,7 @@ urlpatterns = [
 	
 	path('index/', views.index, name='index_view'),
 	path('', views.login_user, name='login_view'),
+	path('busqueda/', views.buscador_etiquetas.as_view(), name='buscador_etiquetas_view'),
 
 	# Detalles 
 	path('detalle_producto_indiv/<int:pk>', views.detalle_producto_indiv.as_view(), name = 'detalle_producto_indiv_view'),
