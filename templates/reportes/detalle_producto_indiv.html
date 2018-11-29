@@ -10,12 +10,15 @@
 		<p class="text-justify">Calificación de calidad total: {{object.calificacion}}</p>
 		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
 		<p class="text-justify">Etiqueta: {{object.etiqueta}}</p>
+		<h5 class="text-center mt-5">Piezas del producto:</h5>
 		<table class="table table-strip mt-5">
-			<th>Piezas del producto</th>
+			<th>ID</th>
+			<th>Nombre de la pieza</th>
 			<th>Detalle</th>
 			{%for pieza in object.piezas.all %}
 				<tr>	
 						<td>{{ pieza.id }} </td>
+						<td>{{pieza.nombre_pieza}}</td>
 						<td><a href="#" class="btn btn-dark">Detalle</a></td>
 				</tr>
 

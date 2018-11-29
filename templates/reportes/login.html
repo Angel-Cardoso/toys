@@ -1,13 +1,60 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<title>Login</title>
+	<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS and JS -->
+    
+    <link rel="stylesheet" type = "text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/login.css'%}">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}"></script>
+
+    <title>{% block title %}{% endblock %} </title>
+  </head>
 </head>
 <body>
-	<form action="{% url 'index_view' %}" method="POST">
-		<input type="text" name="usu" placeholder="Usuario">
-		<input type="text" name="con" placeholder="Contraseña">
+	<div class="jumbotron boxlogin">
+	<form method="POST">
+		{% csrf_token %}	
+  <div class="form-group">
+    <label for="usu">Usuario</label>
+    <input type="text" class="form-control" name = "usu" id="usu" aria-describedby="emailHelp" placeholder="Ingresa Usuario" required>
+    <small id="simple" class="form-text text-muted">We will rock you!</small>
+  </div>
+  <div class="form-group">
+    <label for="con">Contraseña</label>
+    <input type="password" class="form-control" name="con" id="con" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+</div>
+<p>{{error}}</p>
+	<!-- <form method="POST">
+		<div class = "center">
+			<h3>LOGIN</h3>
+			<table>
+				{% csrf_token %}
+				<tr>
+					<td><label for="usu">Username</label></td>
+					<td><input type="text" name="usu" id="usu" placeholder="Usuario" required=""></td>
+				</tr>
+				<tr>
+					<td><label for="con">Password</label></td>
+					<td><input type="password" name="con" id="con" placeholder="Contraseña" required=""></td>
+				</tr>	
+			</table>
+		</div>
 		<button type="submit">Entrar</button>
-	</form>
+	</form> -->
+	
 </body>
 </html>

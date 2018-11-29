@@ -31,8 +31,15 @@ class Piezas_gral(models.Model):
 class Piezas_indiv(models.Model):
 	nombre_pieza = models.ForeignKey(Piezas_gral, on_delete=models.CASCADE)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
+	def _get_etiqueta(self):
+		if self.id < 10:
+				etiqueta = "TOYS" + "0" + str(self.id) + str(self.nombre_pieza).upper()
+		else:
+				etiqueta = "TOYS" + str(self.id) + str(self.nombre_pieza).upper()
+		return etiqueta
+	etiqueta = property(_get_etiqueta)
 	def __str__(self):
-		return str(self.nombre_pieza)
+		return str(self.etiqueta)
 
 class Productos_gral(models.Model):
 	nombre_producto = models.CharField(max_length = 40)

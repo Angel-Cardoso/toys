@@ -1,0 +1,13 @@
+html{
+	margin: 0px;
+	padding: 0px;
+}
+
+.boxlogin{
+	border-radius: 4px;
+	box-shadow: 0px 2px 10px #d6d6d6;
+	margin: 100px auto;
+	width: 320px;
+	-webki-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
