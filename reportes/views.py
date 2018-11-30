@@ -42,7 +42,7 @@ class buscador_etiquetas(generic.ListView):
 	 	print(self.request.GET)
 	 	query = self.request.GET.get("q",None)
 	 	if query is not None:
-	 		qs = qs.filter(Q(nombre_producto__nombre_producto__icontains=query))
+	 		qs = qs.filter(Q(fabrica__icontains=query) | Q(nombre_producto__nombre_producto__icontains=query))
 	 	return qs
 
 class detalle_lote(generic.DetailView):

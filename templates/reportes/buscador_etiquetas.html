@@ -4,10 +4,13 @@
 
 {% block content %}
 	<section class="container">
-		<form method="GET" action="{% url 'buscador_etiquetas_view'%}">
-			<input type="text" name="q" placeholder="Buscar...">
-			<button type="submit" class="btn btn-dark">GO!</button>
-		</form>
+		<div class="jumbotron">
+			<form method="GET" action="{% url 'buscador_etiquetas_view'%}">
+				<label for="q">Buscar</label>
+    <input type="text" class="form-control" name = "q" id="q" aria-describedby="emailHelp" placeholder="Ingresa una etiqueta">
+				<button type="submit" class="btn btn-dark">GO!</button>
+			</form>
+		</div>
 
 		<table class="table table-strip">
 		<th>Producto</th>
