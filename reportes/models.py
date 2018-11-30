@@ -2,10 +2,6 @@ from django.db import models
 from django.conf import settings
 
 
-# Create your models here.
-class Usuario(models.Model):
-	usuario = models.CharField(max_length=15)
-	contrasena = models.CharField(max_length=15)
 
 
 class Areas(models.Model):
@@ -97,6 +93,7 @@ class Productos_indiv(models.Model):
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
+	prueba = str(property(_get_etiqueta))
 	piezas = models.ManyToManyField(Piezas_indiv, blank = True)
 	def _get_estado(self):
 		if self.calificacion <= 20:
@@ -121,13 +118,6 @@ class Estados(models.Model):
 	def __str__(self):
 		return str(self.estado)
 
-# Probablemente este modelo quede inutil por un tiempo
-class Cargos(models.Model):
-	nombre_cargo = models. CharField(max_length = 20)
-	descripcion = models.CharField(max_length = 100)
-	fecha_registro = models.DateTimeField(auto_now_add = True)
-	def __str__(self):
-		return str(self.nombre_cargo)
 
 # El modelo Personal es remplazado por el modelo users que tiene django
 # Cuando ampliemos el modelo users, probablemente nos sirva
@@ -154,14 +144,14 @@ class Jefe_linea(models.Model):
 	linea = models.ForeignKey(Lineas, on_delete=models.CASCADE)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
-		return str(self.personal)
+		return str(self.user)
 
 class Jefe_area(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, default = 1, on_delete=models.CASCADE)
 	area = models.ForeignKey(Areas, on_delete=models.CASCADE)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
-		return str(self.personal)
+		return str(self.user)
 
 class Orden_almacen(models.Model):
 	# Este campo user se deberá poner autimaticamente, posteriormente
@@ -171,13 +161,7 @@ class Orden_almacen(models.Model):
 	jefe_linea = models.ForeignKey(Jefe_linea, on_delete=models.CASCADE)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	estado = models.ForeignKey(Estados, on_delete=models.CASCADE)
-	def __str__(self):
-		return str(self.id)
-
-class Pieza_orden(models.Model):
-	pieza = models.ForeignKey(Piezas_indiv, on_delete=models.CASCADE)
-	orden = models.ForeignKey(Orden_almacen, on_delete=models.CASCADE)
-	fecha_registro = models.DateTimeField(auto_now_add = True)
+	piezas = models.ManyToManyField(Piezas_indiv, blank = True)
 	def __str__(self):
 		return str(self.id)
 

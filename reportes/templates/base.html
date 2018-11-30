@@ -17,11 +17,11 @@
 
     <title>{% block title %}{% endblock %} </title>
   </head>
-  
+  <body style="background-image: url(/static/Images/background1.jpg);">
   
   <!-- posible imagen de fondo -->
 
-      <img class="img-fluid" src='/static/Images/Fondo_Principal.jpg'>
+      <img class="img-fluid" src='/static/Images/top_banner.jpg' width=100% height=100%>
 
 
   <!-- Navbar -->
@@ -39,8 +39,17 @@
           <a class="nav-link" href="#">Calendario</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="#">Extra</a>
+          <a class="nav-link" href="{% url 'producto_indiv_list_view'%}">Productos Elaborados</a>
        </li>
+       <li class="nav-item">
+          <a class="nav-link" href="{% url 'lote_list_view'%}">Lotes</a>
+       </li>
+       <li class="nav-item">
+          <a class="nav-link" href="{% url 'orden_almacen_list_view' %}">Órdenes de almacen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'piezas_indiv_list_view'%}">Piezas individuales</a>
+        </li>     
         <li class="nav-item">
           <a class="nav-link" href="#">Extra</a>
         </li>       
@@ -57,8 +66,15 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarNavDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros</a>
           <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink3">
-            <a class="dropdown-item" href="{% url 'registrar_productos_indiv_views'%}">Registro de producto</a>
-            <a class="dropdown-item" href="#">Extra</a>
+            <a class="dropdown-item" href="{% url 'registrar_piezas_gral_views'%}">Registro general de pieza</a>
+            <a class="dropdown-item" href="{% url 'registrar_productos_gral_views'%}">Registro general de producto</a>
+            <a class="dropdown-item" href="{% url 'registrar_productos_indiv_views'%}">Registro de producto</a> 
+            <a class="dropdown-item" href="{% url 'registrar_area_views'%}">Registrar Area</a>
+            <a class="dropdown-item" href="{% url 'registrar_linea_views'%}">Registro Linea</a>
+            <a class="dropdown-item" href="{% url 'registrar_piezas_indiv_views'%}">Registro de piezas</a>
+            <a class="dropdown-item" href="{% url 'registrar_jefe_area_views'%}">Registro de jefe de area</a>
+            <a class="dropdown-item" href="{% url 'registrar_jefe_linea_views'%}">Registro de jefe de linea</a>
+            <a class="dropdown-item" href="{% url 'registrar_orden_almacen_views'%}">Registro de Orden de Almacen</a>
           </div>
         </li>
         <!-- Dropdown de reportes o algo asi... meh -->

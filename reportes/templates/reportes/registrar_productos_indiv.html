@@ -3,6 +3,8 @@
 {% block title %} Registro de Producto {% endblock %}
 
 {% block content %}   
+<section class="container">
+	<div class="jumbotron">
 	<form method="post">
 		<section class="container mt-3">
 			{% csrf_token %}
@@ -19,5 +21,7 @@
 			<button type="submit" class="btn btn-primary">Registrar</button>
 		</section>	
 	</form>
+</div>
+</section>
 	{{message}}  
 {% endblock %}

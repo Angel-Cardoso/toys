@@ -5,6 +5,7 @@
 {% block content %}
 	<section class="container">
 		<div class="jumbotron">
+		<div class="jumbotron">
 			<form method="GET" action="{% url 'buscador_etiquetas_view'%}">
 				<label for="q">Buscar</label>
     <input type="text" class="form-control" name = "q" id="q" aria-describedby="emailHelp" placeholder="Ingresa una etiqueta">
@@ -22,6 +23,7 @@
 				<td><a href="#" class="btn btn-dark">Detalle</a></td>
 			</tr>		
 		{% endfor %}
-	</table>   
+	</table> 
+	</div>  
 	</section>    
 {% endblock %}

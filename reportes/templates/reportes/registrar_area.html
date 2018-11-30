@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Registro de Area {% endblock %}
+
+{% block content %}
+<section class="container">
+	<div class="jumbotron">
+	<form method="post">
+		<section class="container mt-3">
+			{% csrf_token %}
+			<h1>Registro de Area</h1>
+			<p>Nombre de la área: {{form.nombre_area}}</p>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+		</section>	
+	</form>
+</div>
+</section>
+	{{message}}  
+{% endblock %}

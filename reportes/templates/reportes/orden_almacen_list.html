@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Ordenes de almacen {% endblock %}
+
+{% block content %}
+
+<section class="container">
+	<div class="jumbotron">
+	<table class="table table-strip mt-5">
+		<th>ID</th>
+		<th>Emitió</th>
+		<th>Recibe</th>
+		<th>Fecha de elaboración</th>
+		{% for j in object_list %}
+			<tr>
+				<td>{{j.id}}</td>
+				<td>{{ j.user }} </td>
+				<td>{{ j.jefe_linea }}</td>
+				<td>{{j.fecha_registro}}</td>
+				<td><a href="{% url 'detalle_orden_almacen_view' j.id%}" class="btn btn-dark">Detalle</a></td>
+			</tr>
+
+			{% empty %}
+			{% if request.GET.q %}
+				No se entontro avance
+			{% else %}
+				No hay datos
+			{% endif %}
+		{% endfor %}
+	</table>  
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Orden de almacen {% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div class="jumbotron">
+		<h1 class="text-center">Orden: {{object.id}}</h1>
+		<p class="text-justify">Entrega : {{object.user}}</p>
+		<p class="text-justify">Recibe: {{object.jefe_linea}}</p>
+		<p class="text-justify">estado: {{object.estado}}</p>
+		<p class="text-justify">Fecha de ensamblado: {{object.fecha_registro}}</p>
+		<table class="table table-strip mt-5">
+			<th>Piezas de la orden</th>
+			<th>Etiqueta</th>
+			<th>Detalle</th>
+			{%for pieza in object.piezas.all %}
+				<tr>	
+						<td>{{ pieza.id }} </td>
+						<td>{{pieza.etiqueta}}</td>
+						<td><a href="{% url 'detalle_orden_almacen_view' pieza.id%}" class="btn btn-dark">Detalle</a></td>
+				</tr>
+
+					{% empty %}
+					{% if request.GET.q %}
+						No se entontro clientes
+					{% else %}
+						No hay datos
+					{% endif %}
+			{% endfor %}
+		</table>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Productos Individuales {% endblock %}
+
+{% block content %}
+
+<section class="container">
+	<div class="jumbotron">
+	<table class="table table-strip mt-5">
+		<th>ID</th>
+		<th>Nombre del producto</th>
+		<th>Etiqueta</th>
+		{% for j in object_list %}
+			<tr>
+				<td>{{j.id}}</td>
+				<td>{{ j.nombre_producto }} </td>
+				<td>{{ j.etiqueta }}</td>
+				<td><a href="{% url 'detalle_producto_indiv_view' j.id %}" class="btn btn-dark">Detalle</a></td>
+			</tr>
+
+			{% empty %}
+			{% if request.GET.q %}
+				No se entontro avance
+			{% else %}
+				No hay datos
+			{% endif %}
+		{% endfor %}
+	</table>  
+	</div>
+</section>
+{% endblock %}

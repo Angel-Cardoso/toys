@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Lotes {% endblock %}
+
+{% block content %}
+
+<section class="container">
+	<div class="jumbotron">
+	<table class="table table-strip mt-5">
+		<th>Id del lote</th>
+		<th>Etiqueta</th>
+		{% for j in object_list %}
+			<tr>
+				<td>{{ j.id }} </td>
+				<td>{{ j.etiqueta }}</td>
+				<td><a href="{% url 'detalle_lote_view' j.id%}" class="btn btn-dark">Detalle</a></td>
+			</tr>
+
+			{% empty %}
+			{% if request.GET.q %}
+				No se entontro avance
+			{% else %}
+				No hay datos
+			{% endif %}
+		{% endfor %}
+	</table>  
+	</div>
+</section>
+{% endblock %}

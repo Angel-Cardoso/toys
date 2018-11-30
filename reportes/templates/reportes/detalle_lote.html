@@ -4,7 +4,7 @@
 
 {% block content %}
 <section class="container mt-5">
-	<div>
+	<div class="jumbotron">
 		<h1 class="text-center">Lote: {{object.id}}</h1>
 		<p class="text-justify">Linea de acomodo	: {{object.linea}}</p>
 		<p class="text-justify">Fábrica de ensamblado: {{object.fabrica}}</p>
@@ -19,7 +19,7 @@
 				<tr>	
 						<td>{{ producto.id }} </td>
 						<td>{{producto.etiqueta}}</td>
-						<td><a href="#" class="btn btn-dark">Detalle</a></td>
+						<td><a href="{% url 'detalle_producto_indiv_view' producto.id%}" class="btn btn-dark">Detalle</a></td>
 				</tr>
 
 					{% empty %}
@@ -30,5 +30,6 @@
 					{% endif %}
 			{% endfor %}
 		</table>
+	</div>
 </section>
 {% endblock %}
