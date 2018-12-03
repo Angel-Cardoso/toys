@@ -32,7 +32,7 @@ def create_producto_indiv(request):
 			return redirect('detalle_producto_indiv_view', id =post.id)
 	else:
 		form = FormRegProductos_Indiv()
-	return render(request, "reportes/create_producto_indiv.html", {'form': form})
+	return render(request, "reportes/registrar_productos_indiv.html", {'form': form})
 
 
 def login_user(request):

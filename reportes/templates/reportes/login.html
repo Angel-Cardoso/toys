@@ -40,7 +40,13 @@
   <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
 </div>
-<p>{{error}}</p>
+{% if error == 'Credenciales desconocidas' %}
+		<div class="alert alert-danger" role="alert">
+  {{error}}
+</div>
+{% else %}
+
+{% endif %}
 	<!-- <form method="POST">
 		<div class = "center">
 			<h3>LOGIN</h3>
