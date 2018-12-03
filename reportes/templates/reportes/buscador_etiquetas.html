@@ -20,7 +20,7 @@
 			<tr>
 				<td>{{ j.nombre_producto }} </td>
 				<td>{{ j.etiqueta }}</td>
-				<td><a href="#" class="btn btn-dark">Detalle</a></td>
+				<td><a href="{% url 'detalle_producto_indiv_view' j.id%}" class="btn btn-dark">Detalle</a></td>
 			</tr>		
 		{% endfor %}
 	</table> 

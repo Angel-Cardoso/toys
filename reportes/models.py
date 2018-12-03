@@ -3,7 +3,6 @@ from django.conf import settings
 
 
 
-
 class Areas(models.Model):
 	nombre_area = models.CharField(max_length = 40)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
@@ -93,7 +92,6 @@ class Productos_indiv(models.Model):
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
-	prueba = str(property(_get_etiqueta))
 	piezas = models.ManyToManyField(Piezas_indiv, blank = True)
 	def _get_estado(self):
 		if self.calificacion <= 20:
@@ -102,6 +100,8 @@ class Productos_indiv(models.Model):
 			estado = True
 		return estado
 	estado = property(_get_estado)
+	prueba_estado = models.CharField(max_length = 10, blank = True)
+	prueba = models.CharField(max_length = 20, blank = True)
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.etiqueta)
@@ -190,7 +190,7 @@ class Lotes(models.Model):
 		return etiqueta
 	# YEP para productos aprobados, NOPE para no aprobados
 	etiqueta = property(_get_etiqueta)
-	productos = models.ManyToManyField(Productos_indiv, blank=True, limit_choices_to={})
+	productos = models.ManyToManyField(Productos_indiv, blank=True, limit_choices_to={'prueba_estado': 'aprobado'})
 	fecha_registro = models.DateTimeField(auto_now_add = True)
 	def __str__(self):
 		return str(self.id)

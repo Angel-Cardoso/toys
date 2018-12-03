@@ -33,7 +33,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Principal<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'buscador_etiquetas_view' %}">Búsqueda<span class="sr-only">(current)</span></a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="#">Calendario</a>
@@ -68,13 +68,14 @@
           <div class="dropdown-menu" aria-labelledy="navbarNavDropdownMenuLink3">
             <a class="dropdown-item" href="{% url 'registrar_piezas_gral_views'%}">Registro general de pieza</a>
             <a class="dropdown-item" href="{% url 'registrar_productos_gral_views'%}">Registro general de producto</a>
-            <a class="dropdown-item" href="{% url 'registrar_productos_indiv_views'%}">Registro de producto</a> 
+            <a class="dropdown-item" href="{% url 'create_producto_indiv_view'%}">Registro de producto</a> 
             <a class="dropdown-item" href="{% url 'registrar_area_views'%}">Registrar Area</a>
             <a class="dropdown-item" href="{% url 'registrar_linea_views'%}">Registro Linea</a>
             <a class="dropdown-item" href="{% url 'registrar_piezas_indiv_views'%}">Registro de piezas</a>
             <a class="dropdown-item" href="{% url 'registrar_jefe_area_views'%}">Registro de jefe de area</a>
             <a class="dropdown-item" href="{% url 'registrar_jefe_linea_views'%}">Registro de jefe de linea</a>
             <a class="dropdown-item" href="{% url 'registrar_orden_almacen_views'%}">Registro de Orden de Almacen</a>
+            <a class="dropdown-item" href="{% url 'registrar_lote_views'%}">Registrar Lote</a>
           </div>
         </li>
         <!-- Dropdown de reportes o algo asi... meh -->
@@ -99,6 +100,13 @@
           </div>
         </li> -->
       </ul>
+   </div>
+   <div class="text-right">
+    <form method="POST" action="{% url 'logout_view'%}">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-light" value = "logout">
+    </form>
+     
    </div>
   </nav>
     {% block content %}

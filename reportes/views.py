@@ -1,18 +1,39 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.views import generic
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from .models import Productos_indiv, Productos_gral, Areas, Lineas
 from .models import Lotes, Piezas_gral, Piezas_indiv
 from .models import Jefe_area, Jefe_linea, Orden_almacen
 # Formas
 from .forms import FormRegProductos_Indiv, FormRegProductos_gral, FormRegAreas, FormRegLineas
-from .forms import FormRegJefe_linea, FormRegJefe_area, FormRegOrden_almacen
+from .forms import FormRegJefe_linea, FormRegJefe_area, FormRegOrden_almacen, FormRegPiezas_indiv
+from .forms import FormRegPiezas_gral, FormRegLote
 
 # Create your views here.
+@login_required(login_url = "/")
 def index(request):
 	return render(request,'reportes/index.html',{})
+
+@login_required(login_url = "/")
+def create_producto_indiv(request):
+	if request.method == "POST":
+		form = FormRegProductos_Indiv(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			if post.calificacion <= 20:
+				post.prueba_estado = "rechazado"
+			else:
+				post.prueba_estado = "aprobado"
+			post.prueba = post.etiqueta
+			post.save()
+			return redirect('detalle_producto_indiv_view', id =post.id)
+	else:
+		form = FormRegProductos_Indiv()
+	return render(request, "reportes/create_producto_indiv.html", {'form': form})
+
 
 def login_user(request):
 	context = {}
@@ -29,101 +50,168 @@ def login_user(request):
 	else: 
 		return render(request,"reportes/login.html", context)
 
+def logout_user(request):
+	context = {}
+	if request.method == "POST":
+		logout(request)
+		return HttpResponseRedirect(reverse('login_view'))
+	return render(request, "reportes/login.html", context)
+
 # Detalles
-class detalle_orden_almacen(generic.DetailView):
- 	template_name = "reportes/detalle_orden_almacen.html"
- 	model = Orden_almacen
+@login_required(login_url = "/")
+def detalle_orden_almacen(request, id=1):
+	queryset = Orden_almacen.objects.get(id=id)
+	return render(request, "reportes/detalle_orden_almacen.html", {"object" : queryset})
 
-class detalle_producto_indiv(generic.DetailView):
- 	template_name = "reportes/detalle_producto_indiv.html"
- 	model = Productos_indiv
+@login_required(login_url = "/")
+def detalle_producto_indiv(request, id=1):
+	queryset = Productos_indiv.objects.get(id=id)
+	return render(request, "reportes/detalle_producto_indiv.html", {"object" : queryset})
 
-class buscador_etiquetas(generic.ListView):
-	template_name = "reportes/buscador_etiquetas.html"
-	queryset = Productos_indiv.objects.all()
+@login_required(login_url = "/")
+def buscador_etiquetas(request):
+	q = request.GET.get('q','')
+	querys = (Q(prueba__icontains=q))
+	
+	productos = Productos_indiv.objects.filter(querys)
+	return render(request, "reportes/buscador_etiquetas.html",{ "object_list" : productos})
 
-	def get_queryset(self, *args, **kwargs):
-	 	qs = Productos_indiv.objects.all()
-	 	print(self.request.GET)
-	 	query = self.request.GET.get("q",None)
-	 	if query is not None:
-	 		qs = qs.filter(Q(fabrica__icontains=query) | Q(nombre_producto__nombre_producto__icontains=query))
-	 	return qs
 
-class detalle_lote(generic.DetailView):
- 	template_name = "reportes/detalle_lote.html"
- 	model = Lotes
+@login_required(login_url = "/")
+def detalle_lote(request, id=1):
+	queryset = Lotes.objects.get(id=id)
+	return render(request, "reportes/detalle_lote.html", {"object" : queryset})
 
 # Listas
-class orden_almacen_list(generic.ListView):
-	template_name = "reportes/orden_almacen_list.html"
-	model = Orden_almacen
+@login_required(login_url = "/")
+def orden_almacen_list(request):
+	queryset = Orden_almacen.objects.all()
+	return render(request, "reportes/orden_almacen_list.html",{ "object_list" : queryset})
 
-class producto_indiv_list(generic.ListView):
-	template_name = "reportes/productos_indiv.html"
-	model = Productos_indiv
+@login_required(login_url = "/")
+def producto_indiv_list(request):
+	queryset = Productos_indiv.objects.all()
+	return render(request, "reportes/productos_indiv.html",{ "object_list" : queryset})
 
-class lote_list(generic.ListView):
-	template_name = "reportes/lote_list.html"
-	model = Lotes
+	# template_name = "reportes/productos_indiv.html"
+	# model = Productos_indiv
 
-class piezas_indiv_list(generic.ListView):
-	template_name = "reportes/piezas_indiv_list.html"
-	model = Piezas_indiv
+@login_required(login_url = "/")
+def lote_list(request):
+	queryset = Lotes.objects.all()
+	return render(request, "reportes/lote_list.html",{ "object_list" : queryset})
+
+@login_required(login_url = "/")
+def piezas_indiv_list(request):
+	queryset = Piezas_indiv.objects.all()
+	return render(request, "reportes/piezas_indiv_list.html",{ "object_list" : queryset})
+
 
 # Formas
+@login_required(login_url = "/")
+def registrar_lote(request):
+	if request.method == "POST":
+		form = FormRegLote(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('detalle_lote_view', id =post.id)
+	else:	
+		form = FormRegLote()
+	return render(request, "reportes/registrar_lote.html", {'form': form})
 
-class registrar_productos_indiv(generic.CreateView):
-	template_name = "reportes/registrar_productos_indiv.html"
-	model = Productos_indiv
-	fields = ["nombre_producto", "linea", "resistencia", "presentacion",
-		"tamaño", "movilidad", "empaque", "fabrica", "piezas"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_productos_gral(request):
+	if request.method == "POST":
+		form = FormRegProductos_gral(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegProductos_gral()
+	return render(request, "reportes/registrar_productos_gral.html", {'form': form})
 
-class registrar_productos_gral(generic.CreateView):
-	template_name = "reportes/registrar_productos_gral.html"
-	model = Productos_gral
-	fields = ["nombre_producto", "precio"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_area(request):
+	if request.method == "POST":
+		form = FormRegAreas(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegAreas()
+	return render(request, "reportes/registrar_area.html", {'form': form})
 
-class registrar_area(generic.CreateView):
-	template_name = "reportes/registrar_area.html"
-	model = Areas
-	fields = ["nombre_area"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_linea(request):
+	if request.method == "POST":
+		form = FormRegLineas(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegLineas()
+	return render(request, "reportes/registrar_linea.html", {'form': form})
 
-class registrar_linea(generic.CreateView):
-	template_name = "reportes/registrar_linea.html"
-	model = Lineas
-	fields = ["area"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_piezas_gral(request):
+	if request.method == "POST":
+		form = FormRegPiezas_gral(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegPiezas_gral()
+	return render(request, "reportes/registrar_pieza_gral.html", {'form': form})
 
-class registrar_piezas_gral(generic.CreateView):
-	template_name = "reportes/registrar_pieza_gral.html"
-	model = Piezas_gral
-	fields = ["nombre_pieza", "proveedor", "precio"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_piezas_indiv(request):
+	if request.method == "POST":
+		form = FormRegPiezas_indiv(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegPiezas_indiv()
+	return render(request, "reportes/registrar_pieza_indiv.html", {'form': form})
 
-class registrar_piezas_indiv(generic.CreateView):
-	template_name = "reportes/registrar_pieza_indiv.html"
-	model = Piezas_indiv
-	fields = ["nombre_pieza"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_jefe_linea(request):
+	if request.method == "POST":
+		form = FormRegJefe_linea(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegJefe_linea()
+	return render(request, "reportes/registrar_jefe_linea.html", {'form': form})
 
-class registrar_jefe_linea(generic.CreateView):
-	template_name = "reportes/registrar_jefe_linea.html"
-	model = Jefe_linea
-	fields = ["user", "linea"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_jefe_area(request):
+	if request.method == "POST":
+		form = FormRegJefe_area(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegJefe_area()
+	return render(request, "reportes/registrar_jefe_area.html", {'form': form})
 
-class registrar_jefe_area(generic.CreateView):
-	template_name = "reportes/registrar_jefe_area.html"
-	model = Jefe_area
-	fields = ["user", "area"]
-	success_url = "/index/"
-
-class registrar_orden_almacen(generic.CreateView):
-	template_name = "reportes/registrar_orden_almacen.html"
-	model = Orden_almacen
-	fields = ["user", "jefe_linea", "estado", "piezas"]
-	success_url = "/index/"
+@login_required(login_url = "/")
+def registrar_orden_almacen(request):
+	if request.method == "POST":
+		form = FormRegOrden_almacen(request.POST)
+		if form.is_valid():
+			post = form.save(commit =True)
+			post.save()
+			return redirect('index_view')
+	else:
+		form = FormRegOrden_almacen()
+	return render(request, "reportes/registrar_orden_almacen.html", {'form': form})

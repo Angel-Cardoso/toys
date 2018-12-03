@@ -1,5 +1,5 @@
 from django import forms
-from .models import Productos_indiv, Productos_gral, Areas, Lineas
+from .models import Productos_indiv, Productos_gral, Areas, Lineas, Lotes
 from .models import Piezas_gral, Piezas_indiv, Jefe_area, Jefe_linea, Orden_almacen
 
 
@@ -48,3 +48,8 @@ class FormRegOrden_almacen(forms.ModelForm):
 	class Meta:
 		model = Orden_almacen
 		fields = ["user", "jefe_linea", "estado", "piezas"]
+
+class FormRegLote(forms.ModelForm):
+	class Meta:
+		model = Lotes
+		fields = ["linea", "destino", "fabrica", "productos"]
